@@ -1,12 +1,8 @@
 import streamlit as st
 import google.generativeai as genai
 
-GOOGLE_API_KEY = "GOOGLE_API_KEY"
-genai.configure(api_key=GOOGLE_API_KEY)
-model = genai.GenerativeModel("gemini-pro")
-
 def main():
-    st.set_page_config(page_title="GenQuery", page_icon="robat:")
+    st.set_page_config(page_title="GenQuery", page_icon=":robot:")
 
     st.markdown(
         """
@@ -25,6 +21,14 @@ def main():
 
     if submit:
         with st.spinner("Generating SQL Query.."):
+            # Retrieve the API key from Streamlit Secrets
+            GOOGLE_API_KEY = st.secrets["google_api"]["api_key"]
+            
+            # Configure the Generative AI model with the API key
+            genai.configure(api_key=GOOGLE_API_KEY)
+            model = genai.GenerativeModel("gemini-pro")
+
+            # Generate SQL query
             template = """
                     Create a SQL query snippet using the below text:
 
@@ -37,9 +41,9 @@ def main():
             response = model.generate_content(formatted_template)
             sql_query = response.text.strip().lstrip("```sql").rstrip("```")
 
+            # Generate expected output
             expected_output = """
                     What would be the expected response of this SQL query snippet:
-
 
                     ```
                     {sql_query}
@@ -50,9 +54,9 @@ def main():
             eoutput = model.generate_content(expected_output_formatted)
             eoutput = eoutput.text
 
+            # Generate explanation
             explanation = """
-                    Explain this sql Query:
-
+                    Explain this SQL Query:
 
                     ```
                     {sql_query}
@@ -62,6 +66,8 @@ def main():
             explanation_formatted = explanation.format(sql_query=sql_query)
             explanation = model.generate_content(explanation_formatted)
             explanation = explanation.text
+            
+            # Display results
             with st.container():
                 st.success("Your SQL query has been successfully generated. Feel free to copy and paste it into your database management system to retrieve the requested records.")
                 st.code(sql_query, language="sql")
