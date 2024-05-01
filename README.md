@@ -3,6 +3,7 @@ SQL Chatbot powered by GenAI, simplifying data access and manipulation in SQL da
 
 # SQL Bot 🤖💻
 Welcome to SQL Bot! 🚀 Your friendly assistant for simplifying SQL querying and enhancing your programming skills. With SQL Bot, you can effortlessly generate SQL queries, understand their outputs, and grasp fundamental concepts of SQL programming. Let's dive into the world of SQL together! 💡🔍
+![Screenshot (1234)](https://github.com/aniketandhale08/GenQuery/assets/99685171/c30647c5-9bde-4e73-9a6a-8e905c90f5a8)
 
 # How to Use SQL Bot
 ### Requesting a Query:
@@ -29,3 +30,4 @@ Each query generated comes with detailed explanations to help you grasp SQL conc
 **Save Time:** Instantly generate SQL queries without spending hours figuring out the right syntax.
 
 **Beginner-Friendly:** Perfect for beginners looking to dive into SQL programming with ease.
+
