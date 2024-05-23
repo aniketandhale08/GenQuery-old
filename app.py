@@ -81,7 +81,15 @@ def main():
                 st.success("Your SQL query has been successfully generated. Feel free to copy and paste it into your database management system to retrieve the requested records.")
                 st.code(sql_query, language="sql")
 
-                st.success("Expected output of this SQL Query")
+                st.markdown(
+    """
+    <div style="background-color: #d4edda; padding: 10px; border-radius: 5px;">
+        Expected output of this SQL Query.<br>
+        If the structure of the query isn't displayed, please click again on the 'Generate SQL Query' button.
+    </div>
+    """,
+    unsafe_allow_html=True
+)
                 st.markdown(eoutput)
 
                 st.success("Explanation of SQL Query")
